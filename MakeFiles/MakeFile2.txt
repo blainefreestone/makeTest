@@ -1,1 +1,14 @@
-   
+CC = gcc
+CFILES = $(wildcard * .c)
+HFILES = $(wildcard * .h)
+OFILES = $(CFILES:.c=.o)
+TARGET = tree
+
+$(TARGET): $(OFILES)
+    $(CC) $(OFILES) -o $(TARGET)
+
+%.o: %.c $(HFILES)
+    $(CC) -c $<
+
+clean:
+    rm -f $(TARGET) $(OFILES)
